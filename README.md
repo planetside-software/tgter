@@ -10,7 +10,7 @@ https://planetside.co.uk/wiki/index.php?title=Terragen_.TER_Format
 
 {
 
-    #include \<string\>
+    #include <string>
     #include "tgterread.h"
 
     {
