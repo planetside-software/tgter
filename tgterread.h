@@ -99,7 +99,7 @@ inline ResultOf_ReadTgTerFile
 
 	if (!fp)
 	{
-        return ResultOf_ReadTgTerFile(false, filename, "Unable to open terrain file");
+		return ResultOf_ReadTgTerFile(false, filename, "Unable to open terrain file");
 	}
 
 	char buf[17 * sizeof(char)];
@@ -109,7 +109,7 @@ inline ResultOf_ReadTgTerFile
 	if (strncmp(buf,"TERRAGENTERRAIN ",16))
 	{
 		fclose(fp);
-        return ResultOf_ReadTgTerFile(false, filename, "This is not a Terragen terrain file");
+		return ResultOf_ReadTgTerFile(false, filename, "This is not a Terragen terrain file");
 	}
 
 	uint16_t pad;

@@ -75,12 +75,12 @@ inline ResultOf_WriteTgTerFile
 
 	FILE* of = fopen(filename,"wb");
 
-    if (!of)
+	if (!of)
 	{
-        return ResultOf_WriteTgTerFile(false, filename, "Unable to open output file");
-    }
+		return ResultOf_WriteTgTerFile(false, filename, "Unable to open output file");
+	}
 
-    fwrite("TERRAGENTERRAIN ", 16, 1, of);
+	fwrite("TERRAGENTERRAIN ", 16, 1, of);
 
 	fwrite("SIZE", 4, 1, of);
 	TgTer_PutIntel_UShort(of, TGTER_MIN(header->pointsX, header->pointsY) - 1);
@@ -149,12 +149,13 @@ inline ResultOf_WriteTgTerFile
 	}
 
 	if ((header->pointsX * header->pointsY) % 2 > 0)
+	{
 		TgTer_PutIntel_UShort(of, 0);
-
+	}
 
 	fwrite("EOF ", 4, 1, of);
 
-    fclose(of);
+	fclose(of);
 
 	return ResultOf_WriteTgTerFile(true, filename, "");
 }
@@ -170,10 +171,10 @@ inline ResultOf_WriteRawFile
 
 	FILE* of = fopen(filename,"wb");
 
-    if (!of)
+	if (!of)
 	{
-        return ResultOf_WriteRawFile(false, filename, "Unable to open output file");
-    }
+		return ResultOf_WriteRawFile(false, filename, "Unable to open output file");
+	}
 
 	//compute altitude range from the data (it happens in the constructor)
 	TgTerAltRange altRange(header, source);
@@ -189,7 +190,7 @@ inline ResultOf_WriteRawFile
 		TgTer_PutIntel_UShort(of, (uint16_t)floorf(elev_f));
 	}
 
-    fclose(of);
+	fclose(of);
 
 	return ResultOf_WriteRawFile(true, filename, "");
 }
