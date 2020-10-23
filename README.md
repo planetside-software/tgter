@@ -8,7 +8,6 @@ https://planetside.co.uk/wiki/index.php?title=Terragen_.TER_Format
 
 # Example of Usage
 
-{
 
     #include <string>
     #include "tgterread.h"
@@ -37,4 +36,4 @@ https://planetside.co.uk/wiki/index.php?title=Terragen_.TER_Format
             delete [] altitudes;
         }
     }
-}
+
