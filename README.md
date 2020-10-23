@@ -26,7 +26,7 @@ https://planetside.co.uk/wiki/index.php?title=Terragen_.TER_Format
             float* altitudes = new float[header.pointsX * header.pointsY];
 
             // fill array (readmode 1)
-            TgTerAlts destination(altitudes, 1, header.scaleM, 1.0f / header.scaleM);
+            TgTerAlts destination(altitudes, 1, header.scaleM[2], 1.0f / header.scaleM[2]);
             result = ReadTgTerFile(filename.c_str(), 1, &header, &destination, nullptr);
 
             // do your thing here
