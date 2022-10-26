@@ -8,32 +8,32 @@ https://planetside.co.uk/wiki/index.php?title=Terragen_.TER_Format
 
 # Example of Usage
 
+```cpp
+#include <string>
+#include "tgterread.h"
 
-    #include <string>
-    #include "tgterread.h"
+{
+    std::string filename = "test.ter";
 
+    TgTerHeader header(0, 0);
+
+    // read header (readmode 0)
+    ResultOf_ReadTgTerFile result = ReadTgTerFile(filename.c_str(), 0, &header, nullptr, nullptr);
+
+    if (result.succeeded)
     {
-        std::string filename = "test.ter";
+        // allocate array (bad habits from C, sorry!)
+        float* altitudes = new float[header.pointsX * header.pointsY];
 
-        TgTerHeader header(0, 0);
+        // fill array (readmode 1)
+        TgTerAlts destination(altitudes, 1, header.scaleM[2], 1.0f / header.scaleM[2]);
+        result = ReadTgTerFile(filename.c_str(), 1, &header, &destination, nullptr);
 
-        // read header (readmode 0)
-        ResultOf_ReadTgTerFile result = ReadTgTerFile(filename.c_str(), 0, &header, nullptr, nullptr);
+        // do your thing here
+        //
 
-        if (result.succeeded)
-        {
-            // allocate array (bad habits from C, sorry!)
-            float* altitudes = new float[header.pointsX * header.pointsY];
-
-            // fill array (readmode 1)
-            TgTerAlts destination(altitudes, 1, header.scaleM[2], 1.0f / header.scaleM[2]);
-            result = ReadTgTerFile(filename.c_str(), 1, &header, &destination, nullptr);
-
-            // do your thing here
-            //
-
-            // free memory
-            delete [] altitudes;
-        }
+        // free memory
+        delete [] altitudes;
     }
-
+}
+```
